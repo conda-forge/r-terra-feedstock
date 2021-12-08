@@ -21,7 +21,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 geos:
-- 3.10.0
+- 3.10.1
 libgdal:
 - '3.3'
 pin_run_as_build:
