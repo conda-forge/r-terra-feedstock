@@ -17,9 +17,9 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le
 geos:
-- 3.10.0
+- 3.10.1
 libgdal:
-- '3.3'
+- '3.4'
 pin_run_as_build:
   libgdal:
     max_pin: x.x
@@ -27,7 +27,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 proj:
-- 8.1.1
+- 8.2.0
 r_base:
 - '4.0'
 target_platform:
