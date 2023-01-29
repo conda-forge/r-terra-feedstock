@@ -1,0 +1,91 @@
+From 2b7b9f6bce905f89e9978bca09ec52747d82da04 Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <mmfansler@gmail.com>
+Date: Sun, 29 Jan 2023 13:19:03 -0500
+Subject: [PATCH] drop winlibs
+
+---
+ MD5              |  3 +--
+ src/Makevars.win | 14 ++------------
+ tools/winlibs.R  | 15 ---------------
+ 3 files changed, 3 insertions(+), 29 deletions(-)
+ delete mode 100644 tools/winlibs.R
+
+diff --git a/MD5 b/MD5
+index d4770ef..21a2c31 100644
+--- a/MD5
++++ b/MD5
+@@ -364,7 +364,7 @@ ac1a3dd3f0c925a5dd4638cf3e099d2d *man/zonal.Rd
+ 5dfd7a32fe79653b9d2fdcf6a5963738 *man/zoom.Rd
+ adc2fba1a7a36b617329645392cf6777 *src/Makevars.in
+ 505cfab4345f4fae3e23dee33a8aa087 *src/Makevars.ucrt
+-ea0d4568c39e5c7e09305c56bcb6c801 *src/Makevars.win
++9f3007135c130390fd1728a94d18d847 *src/Makevars.win
+ 4b35eab705c5561f987af28d368ed72b *src/NA.h
+ 6917f21cbfe639fea9ed39624357f2bc *src/RcppExports.cpp
+ 093b03466a12049b588eb48168157586 *src/RcppFunctions.cpp
+@@ -438,4 +438,3 @@ a54674c9edf1850b1b0fb72ba0084513 *src/vecmathse.h
+ c38ad511e60b200a625fdb49f78816c7 *src/write_gdal.cpp
+ 427be287ff9e71b4903a89872a5d2602 *src/write_ogr.cpp
+ 51186a2c71320948a138528b5945331b *tests/tinytest.R
+-81bb75eaec3d6d63ff9b612e30384c3c *tools/winlibs.R
+diff --git a/src/Makevars.win b/src/Makevars.win
+index f2edbe3..50a05f1 100644
+--- a/src/Makevars.win
++++ b/src/Makevars.win
+@@ -1,14 +1,10 @@
+ VERSION = 3.4.1
+-RWINLIB = ../windows/gdal3-$(VERSION)
+ TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+ 
+ PKG_CPPFLAGS =\
+-	-I$(RWINLIB)/include \
+ 	-DHAVE_PROJ_H
+ 
+ PKG_LIBS = \
+-	-L$(RWINLIB)/$(TARGET) \
+-	-L$(RWINLIB)/lib$(R_ARCH) \
+ 	-lgdal -lsqlite3 -lspatialite -lproj -lgeos_c -lgeos  \
+ 	-ljson-c -lnetcdf -lmariadbclient -lpq -lpgport -lpgcommon \
+ 	-lwebp -lcurl -lssh2 -lssl \
+@@ -20,15 +16,9 @@ PKG_LIBS = \
+ 
+ CXX_STD = CXX11
+ 
+-all: clean winlibs
+-
+-winlibs:
+-	mkdir -p ../inst
+-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" --vanilla "../tools/winlibs.R" $(VERSION)
+-	cp -r "$(RWINLIB)/share/gdal" ../inst/
+-	cp -r "$(RWINLIB)/share/proj" ../inst/
++all: clean
+ 
+ clean:
+ 	rm -f $(SHLIB) $(OBJECTS)
+ 
+-.PHONY: all winlibs clean
++.PHONY: all clean
+diff --git a/tools/winlibs.R b/tools/winlibs.R
+deleted file mode 100644
+index 2a6f805..0000000
+--- a/tools/winlibs.R
++++ /dev/null
+@@ -1,15 +0,0 @@
+-
+-if(getRversion() < "3.3.0") {
+-	stop("Your version of R is too old. This package requires R-3.3.0 or newer on Windows.")
+-}
+-
+-# Download gdal-3.* from rwinlib
+-VERSION <- commandArgs(TRUE)
+-testfile <- sprintf("../windows/gdal3-%s/include/gdal-%s/gdal.h", VERSION, VERSION)
+-if(!file.exists(testfile)){
+-	download.file(sprintf("https://github.com/rwinlib/gdal3/archive/v%s.zip", VERSION), "lib.zip", quiet = TRUE)
+-	dir.create("../windows", showWarnings = FALSE)
+-	unzip("lib.zip", exdir = "../windows")
+-	unlink("lib.zip")
+-}
+-
+-- 
+2.39.0
+
