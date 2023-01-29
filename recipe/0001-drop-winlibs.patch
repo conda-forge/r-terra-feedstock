@@ -46,7 +46,7 @@ index f2edbe3..abd1c0c 100644
  PKG_LIBS = \
 -	-L$(RWINLIB)/$(TARGET) \
 -	-L$(RWINLIB)/lib$(R_ARCH) \
-+	-L${LIBRARY_PREFIX}/lib \
++	-L${LIBRARY_PREFIX_CYG}/lib \
  	-lgdal -lsqlite3 -lspatialite -lproj -lgeos_c -lgeos  \
  	-ljson-c -lnetcdf -lmariadbclient -lpq -lpgport -lpgcommon \
  	-lwebp -lcurl -lssh2 -lssl \
