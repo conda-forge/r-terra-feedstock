@@ -1,7 +1,7 @@
 From 2b7b9f6bce905f89e9978bca09ec52747d82da04 Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mmfansler@gmail.com>
 Date: Sun, 29 Jan 2023 13:19:03 -0500
-Subject: [PATCH] drop winlibs
+Subject: [PATCH 1/2] drop winlibs
 
 ---
  MD5              |  3 +--
@@ -86,6 +86,50 @@ index 2a6f805..0000000
 -	unlink("lib.zip")
 -}
 -
+-- 
+2.39.0
+
+
+From 183180d692e8d133accb14f0c21ebfb28bb99379 Mon Sep 17 00:00:00 2001
+From: Mervin Fansler <mmfansler@gmail.com>
+Date: Sun, 29 Jan 2023 15:26:05 -0500
+Subject: [PATCH 2/2] conda includes
+
+---
+ MD5              | 2 +-
+ src/Makevars.win | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/MD5 b/MD5
+index 21a2c31..47257a8 100644
+--- a/MD5
++++ b/MD5
+@@ -364,7 +364,7 @@ ac1a3dd3f0c925a5dd4638cf3e099d2d *man/zonal.Rd
+ 5dfd7a32fe79653b9d2fdcf6a5963738 *man/zoom.Rd
+ adc2fba1a7a36b617329645392cf6777 *src/Makevars.in
+ 505cfab4345f4fae3e23dee33a8aa087 *src/Makevars.ucrt
+-9f3007135c130390fd1728a94d18d847 *src/Makevars.win
++b1eb93e9f4382cf28c9595dd6a254b8c *src/Makevars.win
+ 4b35eab705c5561f987af28d368ed72b *src/NA.h
+ 6917f21cbfe639fea9ed39624357f2bc *src/RcppExports.cpp
+ 093b03466a12049b588eb48168157586 *src/RcppFunctions.cpp
+diff --git a/src/Makevars.win b/src/Makevars.win
+index 50a05f1..5436b4d 100644
+--- a/src/Makevars.win
++++ b/src/Makevars.win
+@@ -2,9 +2,12 @@ VERSION = 3.4.1
+ TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+ 
+ PKG_CPPFLAGS =\
++	-I${PREFIX_CYG}/include \
++	-I${LIBRARY_PREFIX_CYG}/include \
+ 	-DHAVE_PROJ_H
+ 
+ PKG_LIBS = \
++	-L${LIBRARY_PREFIX}\lib \
+ 	-lgdal -lsqlite3 -lspatialite -lproj -lgeos_c -lgeos  \
+ 	-ljson-c -lnetcdf -lmariadbclient -lpq -lpgport -lpgcommon \
+ 	-lwebp -lcurl -lssh2 -lssl \
 -- 
 2.39.0
 
