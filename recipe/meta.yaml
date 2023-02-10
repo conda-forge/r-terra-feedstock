@@ -43,13 +43,6 @@ requirements:
     - libgdal
     - proj
     - geos
-    - geotiff                      # [win]
-    - giflib                       # [win]
-    - jasper                       # [win]
-    - json-c                       # [win]
-    - libcurl                      # [win]
-    - openssl                      # [win]
-    - pcre                         # [win]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -57,13 +50,6 @@ requirements:
     - libgdal
     - proj
     - geos
-    - geotiff                      # [win]
-    - giflib                       # [win]
-    - jasper                       # [win]
-    - json-c                       # [win]
-    - libcurl                      # [win]
-    - openssl                      # [win]
-    - pcre                         # [win]
 
 test:
   commands:
