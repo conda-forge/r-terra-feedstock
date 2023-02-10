@@ -1,61 +1,39 @@
-From 1be450a8fc483468b2fe2671d17e787104141184 Mon Sep 17 00:00:00 2001
+From 2d3ee4352ad6f2de4637fdca623006365b0c6048 Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mmfansler@gmail.com>
-Date: Tue, 31 Jan 2023 22:58:04 -0500
+Date: Fri, 10 Feb 2023 11:19:47 -0500
 Subject: [PATCH] drop winlibs
 
 ---
- MD5              |  3 +--
- src/Makevars.win | 26 ++++++--------------------
+ src/Makevars.win | 23 +++++++----------------
  tools/winlibs.R  | 15 ---------------
- 3 files changed, 7 insertions(+), 37 deletions(-)
+ 2 files changed, 7 insertions(+), 31 deletions(-)
  delete mode 100644 tools/winlibs.R
 
-diff --git a/MD5 b/MD5
-index d4770ef..4af85f5 100644
---- a/MD5
-+++ b/MD5
-@@ -364,7 +364,7 @@ ac1a3dd3f0c925a5dd4638cf3e099d2d *man/zonal.Rd
- 5dfd7a32fe79653b9d2fdcf6a5963738 *man/zoom.Rd
- adc2fba1a7a36b617329645392cf6777 *src/Makevars.in
- 505cfab4345f4fae3e23dee33a8aa087 *src/Makevars.ucrt
--ea0d4568c39e5c7e09305c56bcb6c801 *src/Makevars.win
-+c4844c92ef8a64b09e97a8333a3e369a *src/Makevars.win
- 4b35eab705c5561f987af28d368ed72b *src/NA.h
- 6917f21cbfe639fea9ed39624357f2bc *src/RcppExports.cpp
- 093b03466a12049b588eb48168157586 *src/RcppFunctions.cpp
-@@ -438,4 +438,3 @@ a54674c9edf1850b1b0fb72ba0084513 *src/vecmathse.h
- c38ad511e60b200a625fdb49f78816c7 *src/write_gdal.cpp
- 427be287ff9e71b4903a89872a5d2602 *src/write_ogr.cpp
- 51186a2c71320948a138528b5945331b *tests/tinytest.R
--81bb75eaec3d6d63ff9b612e30384c3c *tools/winlibs.R
 diff --git a/src/Makevars.win b/src/Makevars.win
-index f2edbe3..6be5f0b 100644
+index f2edbe3..e28e14c 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
-@@ -1,34 +1,20 @@
- VERSION = 3.4.1
+@@ -1,14 +1,11 @@
+-VERSION = 3.4.1
 -RWINLIB = ../windows/gdal3-$(VERSION)
- TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
- 
- PKG_CPPFLAGS =\
+-TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
+-
+-PKG_CPPFLAGS =\
 -	-I$(RWINLIB)/include \
-+	-I${PREFIX_CYG}/include \
-+	-I${LIBRARY_PREFIX_CYG}/include \
++PKG_CPPFLAGS = \
++	-Iwin64 \
++	-I$(LIBRARY_PREFIX_CYG)/include \
  	-DHAVE_PROJ_H
  
  PKG_LIBS = \
 -	-L$(RWINLIB)/$(TARGET) \
 -	-L$(RWINLIB)/lib$(R_ARCH) \
--	-lgdal -lsqlite3 -lspatialite -lproj -lgeos_c -lgeos  \
--	-ljson-c -lnetcdf -lmariadbclient -lpq -lpgport -lpgcommon \
--	-lwebp -lcurl -lssh2 -lssl \
--	-lhdf5_hl -lhdf5 -lexpat -lfreexl -lcfitsio \
--	-lmfhdf -lhdf -lxdr -lpcre \
--	-lopenjp2 -ljasper -lpng -ljpeg -ltiff -lgeotiff -lgif -lxml2 -llzma -lz -lzstd \
--	-lodbc32 -lodbccp32 -liconv -lpsapi -lwldap32 -lsecur32 -lgdi32 -lnormaliz \
--	-lcrypto -lcrypt32 -lws2_32 -lshlwapi -lbcrypt
-+	-L${LIBRARY_PREFIX_CYG}/lib \
-+	-lgdal -lproj -lgeos_c -lgeos
++	-Lwin64 \
++	-L$(LIBRARY_PREFIX_CYG)/lib \
+ 	-lgdal -lsqlite3 -lspatialite -lproj -lgeos_c -lgeos  \
+ 	-ljson-c -lnetcdf -lmariadbclient -lpq -lpgport -lpgcommon \
+ 	-lwebp -lcurl -lssh2 -lssl \
+@@ -20,15 +17,9 @@ PKG_LIBS = \
  
  CXX_STD = CXX11
  
@@ -95,5 +73,5 @@ index 2a6f805..0000000
 -}
 -
 -- 
-2.32.0 (Apple Git-132)
+2.39.0
 
