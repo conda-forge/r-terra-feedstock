@@ -2,6 +2,7 @@ set "LIBRARY_PREFIX_CYG=%LIBRARY_PREFIX:\=/%"
 set "LIBRARY_PREFIX_CYG=/%LIBRARY_PREFIX_CYG::=%"
 
 :: rebuild Makevars.win from scratch
+autoreconf --force
 bash ./configure
 bash -c "mv src/Makevars src/Makevars.win"
 
