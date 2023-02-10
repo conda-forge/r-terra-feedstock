@@ -6,12 +6,26 @@ cran_mirror:
 - https://cran.r-project.org
 geos:
 - 3.11.1
+geotiff:
+- 1.7.1
+giflib:
+- '5.2'
+jasper:
+- '2'
+json_c:
+- '0.16'
+libcurl:
+- '7'
 libgdal:
 - '3.6'
 m2w64_c_compiler:
 - m2w64-toolchain
 m2w64_cxx_compiler:
 - m2w64-toolchain
+openssl:
+- '3'
+pcre:
+- '8'
 pin_run_as_build:
   r-base:
     min_pin: x.x
