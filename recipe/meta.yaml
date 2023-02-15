@@ -11,11 +11,10 @@ source:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
   sha256: 89fe9397c8b101088d5c3de47212ea8fa4770805ad33cfff4314c6f08a68272e
-  patches:
-    - 0001-drop-winlibs.patch
   
 build:
   merge_build_host: true  # [win]
+  skip: true              # [win]
   number: 0
   rpaths:
     - lib/R/lib/
