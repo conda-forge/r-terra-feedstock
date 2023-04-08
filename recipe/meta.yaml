@@ -1,4 +1,4 @@
-{% set version = "1.7-18" %}
+{% set version = "1.7-23" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
-  sha256: d6815927ceccc217aa0f19b2231b3a160f643c5046cdb51b42f77b7082dcea46
+  sha256: 6fa9c998ef47f2cd34fc30d79d12558973b0fdf5cd6c16eaeebeddb93b2331f7
 
 build:
   merge_build_host: true  # [win]
