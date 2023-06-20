@@ -38,14 +38,14 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    - r-rcpp
+    - r-rcpp >=1.0_10
     - libgdal
     - proj
     - geos
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
-    - r-rcpp
+    - r-rcpp >=1.0_10
     - libgdal
     - proj
     - geos
