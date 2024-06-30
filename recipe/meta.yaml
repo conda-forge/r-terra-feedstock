@@ -1,6 +1,5 @@
 {% set version = "1.7-78" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-terra
@@ -13,9 +12,8 @@ source:
   sha256: 658956b79d8a1371aefdf7300316f1756b58d436ba549ade012307684b2d4b7e
 
 build:
-  merge_build_host: true  # [win]
   skip: true  # [win or ppc64le]
-  number: 2
+  number: 3
   rpaths:
     - lib/R/lib/
     - lib/
@@ -46,7 +44,6 @@ requirements:
     - geos
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp >=1.0_10
     - libgdal
     - proj
