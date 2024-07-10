@@ -46,9 +46,6 @@ requirements:
   run:
     - r-base
     - r-rcpp >=1.0_10
-    - libgdal
-    - proj
-    - geos
 
 test:
   commands:
