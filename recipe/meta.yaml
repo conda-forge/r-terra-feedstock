@@ -12,13 +12,15 @@ source:
   sha256: 658956b79d8a1371aefdf7300316f1756b58d436ba549ade012307684b2d4b7e
 
 build:
-  number: 4
+  number: 5
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-rcpp                       # [build_platform != target_platform]
     - {{ compiler('c') }}          # [not win]
     - {{ stdlib("c") }}            # [not win]
     - {{ compiler('m2w64_c') }}    # [win]
@@ -44,9 +46,6 @@ requirements:
   run:
     - r-base
     - r-rcpp >=1.0_10
-    - libgdal
-    - proj
-    - geos
 
 test:
   commands:
