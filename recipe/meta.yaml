@@ -16,7 +16,8 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
-  skip: true  # [ppc64le]
+  #skip: true  # [ppc64le]
+  skip: true  # [not win]
 
 requirements:
   build:
