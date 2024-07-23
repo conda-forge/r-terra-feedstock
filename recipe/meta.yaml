@@ -16,8 +16,8 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
-  #skip: true  # [ppc64le]
-  skip: true  # [not win]
+  skip: true  # [ppc64le]
+  #skip: true  # [not win]
 
 requirements:
   build:
@@ -50,9 +50,13 @@ requirements:
     - r-rcpp >=1.0_10
 
 test:
+  requires:
+    - r-tinytest
   commands:
     - $R -e "library('terra')"           # [not win]
     - "\"%R%\" -e \"library('terra')\""  # [win]
+    - $R -e "tinytest::test_package('terra')"           # [not win]
+    - "\"%R%\" -e \"tinytest::test_package('terra')\""  # [win]
 
 about:
   home: https://rspatial.org/terra
