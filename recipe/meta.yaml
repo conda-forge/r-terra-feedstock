@@ -10,6 +10,8 @@ source:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
   sha256: 658956b79d8a1371aefdf7300316f1756b58d436ba549ade012307684b2d4b7e
+  patches:
+    - patches/0001-minimal-ucrt-libs.patch
 
 build:
   number: 5
@@ -53,8 +55,8 @@ test:
   requires:
     - r-tinytest
   commands:
-    - $R -e "library('terra')"           # [not win]
-    - "\"%R%\" -e \"library('terra')\""  # [win]
+    - $R -e "library('terra')"                          # [not win]
+    - "\"%R%\" -e \"library('terra')\""                 # [win]
     - $R -e "tinytest::test_package('terra')"           # [not win]
     - "\"%R%\" -e \"tinytest::test_package('terra')\""  # [win]
 
