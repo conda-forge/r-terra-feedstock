@@ -1,6 +1,6 @@
-From da22b844b52d997ac936bdb58e607c112425fa38 Mon Sep 17 00:00:00 2001
+From e03a050a86c49b5a56b4f4b04b8b7340951711c3 Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mervin.fansler@bric.ku.dk>
-Date: Thu, 1 Aug 2024 16:34:43 +0200
+Date: Thu, 1 Aug 2024 18:29:21 +0200
 Subject: [PATCH] minimal ucrt libs
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] minimal ucrt libs
  1 file changed, 2 insertions(+), 22 deletions(-)
 
 diff --git a/src/Makevars.ucrt b/src/Makevars.ucrt
-index 1b901d6..217397a 100644
+index 1b901d6..e0f5d5e 100644
 --- a/src/Makevars.ucrt
 +++ b/src/Makevars.ucrt
 @@ -1,22 +1,2 @@
@@ -34,5 +34,5 @@ index 1b901d6..217397a 100644
 -	rm -f $(SHLIB) $(OBJECTS)
 -
 -.PHONY: all winlibs clean
-+PKG_LIBS = -L$(LIBRARY_LIB) -lgdal -lgeos_c -lproj
++PKG_LIBS = -L$(LIBRARY_LIB) -lgdal -lgeos -lgeos_c -lproj
 +PKG_CPPFLAGS = -I$(LIBRARY_INC)
