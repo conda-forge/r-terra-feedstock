@@ -1,0 +1,25 @@
+From 1d19f58274afc00ecd10ad124ed3d94682030e7c Mon Sep 17 00:00:00 2001
+From: Daniel Nachun <daniel.nachun@gmail.com>
+Date: Sat, 5 Oct 2024 21:43:47 -0700
+Subject: [PATCH 2/2] fix const usage
+
+---
+ src/NA.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/NA.h b/src/NA.h
+index 205cde7..d825bd0 100644
+--- a/src/NA.h
++++ b/src/NA.h
+@@ -22,7 +22,7 @@
+ template <class T> 
+ class NA {
+   public:
+-    static constexpr T value = std::is_floating_point<T>::value ? NAN : std::numeric_limits<T>::min();
++    static constexpr T value = std::as_const(std::is_floating_point<T>::value ? NAN : std::numeric_limits<T>::min());
+ };
+ 
+ // bool has no NA
+-- 
+2.45.2
+
