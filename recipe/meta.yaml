@@ -14,7 +14,7 @@ source:
     - patches/0001-minimal-ucrt-libs.patch
 
 build:
-  skip: true  # [win or ppc64le]
+  skip: true  # [ppc64le]
   number: 3
   rpaths:
     - lib/R/lib/
