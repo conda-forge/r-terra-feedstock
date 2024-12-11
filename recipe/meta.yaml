@@ -13,7 +13,7 @@ source:
 
 build:
   skip: true  # [win or ppc64le]
-  number: 2
+  number: 3
   rpaths:
     - lib/R/lib/
     - lib/
@@ -41,15 +41,12 @@ requirements:
   host:
     - r-base
     - r-rcpp >=1.0_10
-    - libgdal
+    - libgdal-core
     - proj
     - geos
   run:
     - r-base
     - r-rcpp >=1.0_10
-    - libgdal
-    - proj
-    - geos
 
 test:
   commands:
