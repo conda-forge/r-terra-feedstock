@@ -1,4 +1,4 @@
-{% set version = "1.8-21" %}
+{% set version = "1.8-29" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
-  sha256: 6a55ac8ef3f428f540be102e3b220392c41a325753528894d0346218c2551d7f
+  sha256: 46cc9755e581bcb919379a2b384d5bcec9d086ff7a3998b8c52ab889437b2b11
 
 build:
   skip: true  # [win or ppc64le]
