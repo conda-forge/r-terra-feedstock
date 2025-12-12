@@ -10,10 +10,12 @@ source:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
   sha256: a446375352d1a01d6bb9ec0a0ac0031ac11a1252567278bd34b4a136f6de7474
+  patches:
+    - patches/0001-minimal-ucrt-libs.patch
 
 build:
-  skip: true  # [win or ppc64le]
-  number: 0
+  number: 1
+  skip: true  # [ppc64le]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -22,19 +24,16 @@ requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - r-rcpp                       # [build_platform != target_platform]
-    - {{ compiler('c') }}          # [not win]
-    - {{ stdlib("c") }}            # [not win]
-    - {{ compiler('m2w64_c') }}    # [win]
-    - {{ stdlib("c") }}            # [win]
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}
+    - {{ stdlib("c") }}
+    - {{ compiler('cxx') }}
     - {{ posix }}filesystem        # [win]
     - {{ posix }}sed               # [win]
     - {{ posix }}grep              # [win]
     - {{ posix }}autoconf
     - {{ posix }}automake          # [not win]
     - {{ posix }}automake-wrapper  # [win]
-    - {{ posix }}pkg-config
+    - pkg-config
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
@@ -49,9 +48,13 @@ requirements:
     - r-rcpp >=1.0_10
 
 test:
+  requires:
+    - r-tinytest
   commands:
     - $R -e "library('terra')"           # [not win]
     - "\"%R%\" -e \"library('terra')\""  # [win]
+    - $R -e "tinytest::test_package('terra')"           # [not win]
+    - "\"%R%\" -e \"tinytest::test_package('terra')\""  # [win]
 
 about:
   home: https://rspatial.org/terra
@@ -59,7 +62,6 @@ about:
   license: GPL-3.0-or-later
   summary: Methods for spatial data analysis with raster and vector data. Raster methods allow for low-level data manipulation as well as high-level global, local, zonal, and focal computation. The predict and interpolate methods facilitate the use of regression type (interpolation, machine learning) models for spatial prediction,
     including with satellite remote sensing data. Processing of very large files is supported. See the manual and tutorials on <https://rspatial.org/terra/> to get started. 'terra' is very similar to the 'raster' package; but 'terra' can do more, is simpler to use, and it is faster.
-  license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
