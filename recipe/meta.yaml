@@ -24,10 +24,9 @@ requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - r-rcpp                       # [build_platform != target_platform]
-    - {{ compiler('c') }}          # [not win]
+    - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('r_clang') }}    # [win]
+    - {{ compiler('cxx') }}
     - {{ posix }}filesystem        # [win]
     - {{ posix }}sed               # [win]
     - {{ posix }}grep              # [win]
