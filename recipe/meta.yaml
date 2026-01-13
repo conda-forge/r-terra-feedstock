@@ -13,7 +13,7 @@ source:
 
 build:
   skip: true  # [win or ppc64le]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -47,6 +47,8 @@ requirements:
   run:
     - r-base
     - r-rcpp >=1.0_10
+    - {{ pin_compatible('proj') }}
+    - {{ pin_compatible('libgdal-core') }}
 
 test:
   commands:
