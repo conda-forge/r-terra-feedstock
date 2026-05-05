@@ -1,9 +1,9 @@
-{% set version = "1.8-86" %}
+{% set version = "1.9-11" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-terra
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
@@ -46,6 +46,8 @@ requirements:
   run:
     - r-base
     - r-rcpp >=1.0_10
+    - {{ pin_compatible('proj') }}
+    - {{ pin_compatible('libgdal-core') }}
 
 test:
   requires:
