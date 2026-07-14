@@ -21,15 +21,15 @@ docker_image:
 geos:
 - 3.14.1
 libgdal:
-- '3.12'
+- '3.13'
 libgdal_core:
-- '3.12'
+- '3.13'
 pin_run_as_build:
   r-base:
     min_pin: x.x
     max_pin: x.x
 proj:
-- '9.7'
+- '9.8'
 r_base:
 - '4.4'
 target_platform:
