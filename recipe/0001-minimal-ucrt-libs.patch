@@ -1,0 +1,44 @@
+From 9ff0b42de3ff2733ffd56d95ab7b30a71df1c175 Mon Sep 17 00:00:00 2001
+From: Daniel Nachun <daniel.nachun@gmail.com>
+Date: Thu, 13 Aug 2026 00:58:03 -0700
+Subject: [PATCH] minimal ucrt libs
+
+---
+ src/Makevars.ucrt | 27 ++-------------------------
+ 1 file changed, 2 insertions(+), 25 deletions(-)
+
+diff --git a/src/Makevars.ucrt b/src/Makevars.ucrt
+index 60df2b6..e0f5d5e 100644
+--- a/src/Makevars.ucrt
++++ b/src/Makevars.ucrt
+@@ -1,25 +1,2 @@
+-
+-ifeq (,$(shell pkg-config --version 2>/dev/null))
+-  LIBSHARPYUV = $(or $(and $(wildcard $(R_TOOLS_SOFT)/lib/libsharpyuv.a),-lsharpyuv),)
+-  PKG_LIBS =  \
+--fopenmp -lgdal -larmadillo -lopenblas -lgfortran -lquadmath -lpq -lpgcommon -lpgport -lodbc32 -lodbccp32 -lblosc -lkea -lhdf5_cpp -lhdf5 -lpoppler -llcms2 -lfreetype -lharfbuzz -lfreetype -llz4 -lpcre2-8 -lxml2 -lopenjp2 -lnetcdf -lmysqlclient -lspatialite -lgeos_c -lgeos -lminizip -lgeos -ljson-c -lgta -lfreexl -lexpat -lssl -lpsapi -lgif -lmfhdf -lhdf5_hl -lcrypto -lportablexdr -ldf -lhdf5 -lsz -lpng16 -lpng -lpoppler -llcms2 -lfreetype -lharfbuzz -lfreetype -llz4 -lpcre2-8 -lpcre -lcurl -lbcrypt -lrtmp -lssl -lssh2 -lidn2 -lunistring -liconv -lgcrypt -lcrypto -lgpg-error -lws2_32 -ltiff -llzma -ljpeg -lz -lcfitsio -lzstd -lwebpdecoder -lwebp $(LIBSHARPYUV) -lsbml-static -lgeotiff -lproj -lsqlite3 -lbz2 -lcrypt32 -lwldap32 -lsecur32
+-# -ltbb_static
+-else
+-  PKG_LIBS = $(shell pkg-config --libs gdal geos proj)
+-  PKG_LIBS += -ltbb12
+-  PKG_CXXFLAGS += -DHAVE_TBB 
+-endif
+-
+-##PKG_CXXFLAGS += -Wconversion -Wno-sign-conversion 
+-##CXX_STD = CXX
+-
+-all: clean winlibs
+-
+-winlibs:
+-	cp -r "$(R_TOOLS_SOFT)/share/gdal" ../inst/
+-	cp -r "$(R_TOOLS_SOFT)/share/proj" ../inst/
+-
+-clean:
+-	rm -f $(SHLIB) $(OBJECTS)
+-
+-.PHONY: all winlibs clean
++PKG_LIBS = -L$(LIBRARY_LIB) -lgdal -lgeos -lgeos_c -lproj
++PKG_CPPFLAGS = -I$(LIBRARY_INC)
+-- 
+2.53.0
+
