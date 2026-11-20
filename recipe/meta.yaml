@@ -1,19 +1,19 @@
-{% set version = "1.9-50" %}
+{% set version = "1.9-60" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
   name: r-terra
-  version: "{{ version|replace('-', '_') }}"
+  version: {{ version|replace('-', '_') }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/terra_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/terra/terra_{{ version }}.tar.gz
-  sha256: 377472faea33107c727f6e137f4df2d9f2e7112eef696250305ae51642c609aa
+  sha256: a920d79dbab104816b00efd1738af570c019bf4dfe457375bcf52151091bcb8e
 
 build:
   skip: true  # [win or ppc64le]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
